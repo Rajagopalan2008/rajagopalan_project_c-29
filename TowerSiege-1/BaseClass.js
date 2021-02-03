@@ -16,5 +16,6 @@ class BaseClass{
       translate(this.body.position.x, this.body.position.y);
       rotate(angle);
       pop();
+
     }
 }

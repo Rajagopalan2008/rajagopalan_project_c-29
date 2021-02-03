@@ -5,12 +5,15 @@ const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
 //to create the variables
-var ground1,world,engine,base1,base2,polygen,slingshot
+var ground1,world,engine,base1,base2,polygen,slingshot,polyImage
 var block1,block2,block3,block4,block5,block6,block7,block8,block9,block10
 var block11,block12,block13,block14,block15,block16,block17,block18,block19,block20
 var block21,block22,block23,block24,block25,block26,block27,block28,block29,block30 
 var block31,block32
 
+function preload() {
+    polyImage = loadImage("polygon.png");
+}
 function setup() {
     createCanvas(800,600);
 
@@ -24,10 +27,13 @@ function setup() {
     base1=new Ground(355,400,210,20);
     base2=new Ground(675,200,210,20);
 
-    //to create the sling holder polygen
-    polygen=Bodies.circle(75,200,20);
+    //to create the sling holder polygon
+    var optionpoly={
+        density:50
+    }
+    polygen=Bodies.circle(75,200,20,optionpoly);
     World.add(world,polygen);
-    slingshot=new SlingShot(this.polygen,{x:55,y:200});
+    slingshot=new SlingShot(polygen,{x:75,y:200});
 
     //to create the blocks
     //base1
@@ -69,7 +75,12 @@ function setup() {
 }
 
 function draw(){
-    background("orange")
+    background("orange");
+
+    imageMode(CENTER);
+    image(polyImage, 75,200, 40, 40);
+
+    Engine.update(engine);
 
     ground1.display();
     base1.display();
@@ -111,8 +122,8 @@ function draw(){
 }
 
 function mouseDragged(){
- Matter.Body.setPosition(slingshot.body,{mouseX,mouseY});
+ Matter.Body.setPosition(slingshot.body,{x:mouseX,y:mouseY});
 }
 function mouseReleased(){
-polygen.fly;
+polygen.fly();
 }
