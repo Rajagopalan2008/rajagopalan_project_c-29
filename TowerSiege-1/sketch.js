@@ -76,11 +76,9 @@ function setup() {
 
 function draw(){
     background("orange");
-
-    imageMode(CENTER);
-    image(polyImage, 75,200, 40, 40);
-
     Engine.update(engine);
+    imageMode(CENTER);
+    image(polyImage, polygen.position.x, polygen.position.y, 40, 40);
 
     ground1.display();
     base1.display();
@@ -122,8 +120,8 @@ function draw(){
 }
 
 function mouseDragged(){
- Matter.Body.setPosition(slingshot.body,{x:mouseX,y:mouseY});
+ polygen: Matter.Body.setPosition(polygen,{x:mouseX,y:mouseY});
 }
 function mouseReleased(){
-polygen.fly();
+slingshot.fly();
 }
