@@ -76,7 +76,17 @@ function setup() {
 
 function draw(){
     background("orange");
+
+    fill("red");
+    textSize(20);
+    text("drag the polygen to launch it",50,50)
+    fill("green");
+    text("press the space key to get another chance",50,80);
+    fill("blue");
+    text("pls give 5 star rating if u liked the game",50,550);
+
     Engine.update(engine);
+
     imageMode(CENTER);
     image(polyImage, polygen.position.x, polygen.position.y, 40, 40);
 
@@ -124,4 +134,9 @@ function mouseDragged(){
 }
 function mouseReleased(){
 slingshot.fly();
+}
+function keyPressed() {
+    if (keyCode === 32){
+    slingshot.attach(this.polygen);   
+    }
 }
