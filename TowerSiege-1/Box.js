@@ -8,14 +8,12 @@ class Box extends BaseClass {
     var pos =this.body.position;
     rectMode(CENTER);
     fill("cyan");
-    rect(pos.x, pos.y, this.width, this.height);
 
     if(this.body.speed<3){
       super.display();
     } else{
-      world.remove(world,this.body);
-      tint(255,this.visibility);
-      image(this.image,this.body.position.x,this.body.position.y,50,50)
+      World.remove(world,this.body);
+      this.visibility-=5;
     }
   }
 };
